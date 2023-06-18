@@ -1,9 +1,100 @@
-<!doctype html>
-<html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sammleritem-Verwaltung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sammleritem-Verwaltung</h1>
+
+    <form id="itemForm">
+        <input type="text" id="nameInput" placeholder="Name" required>
+        <input type="text" id="categoryInput" placeholder="Kategorie" required>
+        <textarea id="descriptionInput" placeholder="Beschreibung"></textarea>
+        <input type="submit" value="Hinzufügen">
+    </form>
+
+    <table id="itemTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Kategorie</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Hier werden die eingetragenen Sammleritems eingefügt -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("itemForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var name = document.getElementById("nameInput").value;
+            var category = document.getElementById("categoryInput").value;
+            var description = document.getElementById("descriptionInput").value;
+
+            var newRow = document.createElement("tr");
+            newRow.innerHTML = "<td>" + name + "</td><td>" + category + "</td><td>" + description + "</td>";
+
+            document.getElementById("itemTable").getElementsByTagName("tbody")[0].appendChild(newRow);
+
+            document.getElementById("nameInput").value = "";
+            document.getElementById("categoryInput").value = "";
+            document.getElementById("descriptionInput").value = "";
+        });
+    </script>
+</body>
 </html>
